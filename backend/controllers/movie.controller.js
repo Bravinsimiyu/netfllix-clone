@@ -1,6 +1,6 @@
 import { fetchFromTMDB } from "../services/tmdb.service.js";
 
-export async function getTrendingMovie(req, res) {
+export const getTrendingMovie = async (req, res) => {
 	try {
 		const data = await fetchFromTMDB("https://api.themoviedb.org/3/trending/movie/day?language=en-US");
 		const randomMovie = data.results[Math.floor(Math.random() * data.results?.length)];
@@ -11,7 +11,7 @@ export async function getTrendingMovie(req, res) {
 	}
 }
 
-export async function getMovieTrailers(req, res) {
+export const getMovieTrailers = async (req, res) => {
 	const { id } = req.params;
 	try {
 		const data = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`);
@@ -25,7 +25,7 @@ export async function getMovieTrailers(req, res) {
 	}
 }
 
-export async function getMovieDetails(req, res) {
+export const getMovieDetails = async (req, res) => {
 	const { id } = req.params;
 	try {
 		const data = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${id}?language=en-US`);
@@ -39,7 +39,7 @@ export async function getMovieDetails(req, res) {
 	}
 }
 
-export async function getSimilarMovies(req, res) {
+export const getSimilarMovies = async (req, res) => {
 	const { id } = req.params;
 	try {
 		const data = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`);
@@ -49,7 +49,7 @@ export async function getSimilarMovies(req, res) {
 	}
 }
 
-export async function getMoviesByCategory(req, res) {
+export const getMoviesByCategory = async (req, res) => {
 	const { category } = req.params;
 	try {
 		const data = await fetchFromTMDB(`https://api.themoviedb.org/3/movie/${category}?language=en-US&page=1`);

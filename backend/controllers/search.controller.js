@@ -1,7 +1,7 @@
 import { User } from "../models/user.model.js";
 import { fetchFromTMDB } from "../services/tmdb.service.js";
 
-export async function searchPerson(req, res) {
+export const searchPerson = async (req, res) => {
 	const { query } = req.params;
 	try {
 		const response = await fetchFromTMDB(
@@ -31,7 +31,7 @@ export async function searchPerson(req, res) {
 	}
 }
 
-export async function searchMovie(req, res) {
+export const searchMovie = async (req, res) => {
 	const { query } = req.params;
 
 	try {
@@ -61,7 +61,7 @@ export async function searchMovie(req, res) {
 	}
 }
 
-export async function searchTv(req, res) {
+export const searchTv = async (req, res) => {
 	const { query } = req.params;
 
 	try {
@@ -91,7 +91,7 @@ export async function searchTv(req, res) {
 	}
 }
 
-export async function getSearchHistory(req, res) {
+export const getSearchHistory = async (req, res) => {
 	try {
 		res.status(200).json({ success: true, content: req.user.searchHistory });
 	} catch (error) {
@@ -99,7 +99,7 @@ export async function getSearchHistory(req, res) {
 	}
 }
 
-export async function removeItemFromSearchHistory(req, res) {
+export const removeItemFromSearchHistory = async (req, res) => {
 	let { id } = req.params;
 
 	id = parseInt(id);

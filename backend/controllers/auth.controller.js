@@ -2,7 +2,7 @@ import { User } from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
 import { generateTokenAndSetCookie } from "../utils/generateToken.js";
 
-export async function signup(req, res) {
+export const signup = async (req, res) => {
 	try {
 		const { email, password, username } = req.body;
 
@@ -62,7 +62,7 @@ export async function signup(req, res) {
 	}
 }
 
-export async function login(req, res) {
+export const login = async (req, res) => {
 	try {
 		const { email, password } = req.body;
 
@@ -96,7 +96,7 @@ export async function login(req, res) {
 	}
 }
 
-export async function logout(req, res) {
+export const logout = async (req, res) => {
 	try {
 		res.clearCookie("jwt-netflix");
 		res.status(200).json({ success: true, message: "Logged out successfully" });
@@ -106,12 +106,13 @@ export async function logout(req, res) {
 	}
 }
 
-export async function authCheck(req, res) {
+export const authCheck = async (req, res) => {
 	try {
-		console.log("req.user:", req.user);
+		// console.log("req.user:", req.user);
 		res.status(200).json({ success: true, user: req.user });
 	} catch (error) {
 		console.log("Error in authCheck controller", error.message);
 		res.status(500).json({ success: false, message: "Internal server error" });
 	}
 }
+

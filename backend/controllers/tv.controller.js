@@ -1,17 +1,17 @@
 import { fetchFromTMDB } from "../services/tmdb.service.js";
 
-export async function getTrendingTv(req, res) {
+export const getTrendingTv = async (req, res) => {
 	try {
 		const data = await fetchFromTMDB("https://api.themoviedb.org/3/trending/tv/day?language=en-US");
-		const randomMovie = data.results[Math.floor(Math.random() * data.results?.length)];
+		const randomTv = data.results[Math.floor(Math.random() * data.results?.length)];
 
-		res.json({ success: true, content: randomMovie });
+		res.json({ success: true, content: randomTv });
 	} catch (error) {
 		res.status(500).json({ success: false, message: "Internal Server Error" });
 	}
 }
 
-export async function getTvTrailers(req, res) {
+export const getTvTrailers = async (req, res) => {
 	const { id } = req.params;
 	try {
 		const data = await fetchFromTMDB(`https://api.themoviedb.org/3/tv/${id}/videos?language=en-US`);
@@ -25,7 +25,7 @@ export async function getTvTrailers(req, res) {
 	}
 }
 
-export async function getTvDetails(req, res) {
+export const getTvDetails = async (req, res) => {
 	const { id } = req.params;
 	try {
 		const data = await fetchFromTMDB(`https://api.themoviedb.org/3/tv/${id}?language=en-US`);
@@ -39,7 +39,7 @@ export async function getTvDetails(req, res) {
 	}
 }
 
-export async function getSimilarTvs(req, res) {
+export const getSimilarTvs = async (req, res) => {
 	const { id } = req.params;
 	try {
 		const data = await fetchFromTMDB(`https://api.themoviedb.org/3/tv/${id}/similar?language=en-US&page=1`);
@@ -49,7 +49,7 @@ export async function getSimilarTvs(req, res) {
 	}
 }
 
-export async function getTvsByCategory(req, res) {
+export const getTvsByCategory = async (req, res) => {
 	const { category } = req.params;
 	try {
 		const data = await fetchFromTMDB(`https://api.themoviedb.org/3/tv/${category}?language=en-US&page=1`);
