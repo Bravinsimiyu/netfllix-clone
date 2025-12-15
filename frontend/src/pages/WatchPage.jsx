@@ -16,7 +16,7 @@ const WatchPage = () => {
   const [trailers, setTrailers] = useState([]);
   const [currentTrailerIndex, setCurrentTrailerIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-  // const [content, setContent] = useState({});
+
   const [similarContent, setSimilarContent] = useState([]);
   const [contentDetails, setContentDetails] = useState({});
   const { contentType } = useContentStore();
@@ -39,7 +39,7 @@ const WatchPage = () => {
     getTrailers();
 
   }, [id, contentType])
-  // console.log("Trailers are here:", trailers);
+
 
   useEffect(() => {
     const getSimilarContent = async () => {
@@ -55,7 +55,7 @@ const WatchPage = () => {
     getSimilarContent();
   }, [id, contentType])
 
-  // console.log("Similar Content:", similarContent);
+ 
 
   useEffect(() => {
     const getContentDetails = async () => {
@@ -73,7 +73,7 @@ const WatchPage = () => {
     getContentDetails();
   }, [id, contentType])
 
-  // console.log("Content Details:", contentDetails);
+ 
   
   const handlePrev = () => {
     if (currentTrailerIndex > 0) setCurrentTrailerIndex(currentTrailerIndex - 1);
